@@ -20,4 +20,4 @@ app.get('/:key', checkKey, (req,res,next) => {
 	res.redirect(links[req.params.key]);
 });
 
-app.listen(port, () => console.log(`Example app listen on port ${port}!`));
+app.listen(port, () => console.log(`Listening on port ${port}!`));
