@@ -18,6 +18,7 @@ const checkKey = (req, res, next) => {
 
 app.get('/:key', checkKey, (req, res, next) => {
     res.redirect(links[req.params.key]);
+    next();
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));
