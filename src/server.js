@@ -1,31 +1,10 @@
 const express = require('express');
+const keyChecker = require('./keyChecker.js');
+const links = require('./links.js');
 const port = 3000;
 const app = express();
 
-const links = {
-    google: 'http://www.google.com',
-    face: 'http://www.facebook.com'
-};
-
-const findKeyCheckCondition = (method) => {
-    if (method in ['GET', 'PUT', 'DELETE']) {
-        return (key, links) => (key in links);
-    } else {
-        return (key, links) => (!(key in links));
-    }
-};
-
-const checkKey = (req, res, next) => {
-    const key  = req.params.key;
-    const keyCheckCondition = findKeyCheckCondition(req.method)(key,links);
-    if (keyCheckCondition) {
-        next();
-    } else {
-        res.status(404).send();
-    }
-};
-
-app.use(checkKey);
+app.use(keyChecker.checkKey);
 
 app.get('/:key', (req, res, next) => {
     res.status(200).redirect(links[req.params.key]);
