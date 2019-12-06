@@ -17,7 +17,7 @@ const findKeyCheckCondition = (method) => {
 
 const checkKey = (req, res, next) => {
     const key  = req.params.key;
-    const keyCheckCondition = findKeyCheckCondition(req.method)(key);
+    const keyCheckCondition = findKeyCheckCondition(req.method)(key,links);
     if (keyCheckCondition) {
         next();
     } else {
@@ -27,24 +27,24 @@ const checkKey = (req, res, next) => {
 
 app.use(checkKey);
 
-app.get('/:key', checkKey, (req, res, next) => {
+app.get('/:key', (req, res, next) => {
     res.status(200).redirect(links[req.params.key]);
     next();
 });
 
-app.put('/:key', checkKey, (req, res, next) => {
+app.put('/:key', (req, res, next) => {
     links[req.params.key] = req.query.url;
     res.status(200).send();
     next();
 });
 
-app.post('/', checkKey, (req, res, next) => {
+app.post('/', (req, res, next) => {
     links[req.params.key] = req.query.url;
     res.status(201).send();
     next();
 });
 
-app.delete('/:key', checkKey, (req, res, next) => {
+app.delete('/:key', (req, res, next) => {
     delete links[req.params.key];
     res.status(204).send();
     next();
