@@ -4,8 +4,9 @@
   "description": "This is going to be the backend of a full-stack URL shortener application. I plan on using the MERN stack for the project.",
   "main": "./src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/server.js"
+    "start": "node ./src/server.js",
+    "test": "jest --verbose",
+    "test:coverage": "jest --verbose --coverage"
   },
   "repository": {
     "type": "git",
@@ -29,13 +30,18 @@
     "mongodb": "^3.3.4"
   },
   "devDependencies": {
-    "eslint": "^6.6.0",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^23.6.0",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "mocha": "^6.2.2"
+    "jest": "^24.9.0",
+    "supertest": "^4.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
