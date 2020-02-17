@@ -1,5 +1,6 @@
 # dependencies
-/node_modules
+node_modules/
+.yarn
 
 # testing
 /coverage
@@ -7,8 +8,11 @@
 # production
 /build
 
-# misc
+# security
 *.pem
+
+# mongodb
+config/default.json
 
 # debug and error logs
 yarn-debug.log*
